@@ -105,10 +105,6 @@ func backupTask(s types.Schedule) error {
 			startTime = startTime.Add(time.Duration(m * int(time.Minute)))
 		}
 
-		fmt.Println(now)
-		fmt.Println(startTime)
-		fmt.Println(startTime.Sub(now))
-
 		<-time.NewTimer(startTime.Sub(now)).C
 		if err = ziputils.CreateZipFile(s.SourcePath, s.DestPath); err != nil {
 			return err

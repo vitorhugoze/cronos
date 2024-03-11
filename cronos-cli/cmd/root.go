@@ -22,8 +22,7 @@ var rootCmd = &cobra.Command{
 
 func init() {
 
-	var instant string
-	var interval string
+	var instant, interval, delete string
 
 	addScheadule := &cobra.Command{
 		Use:   "add",
@@ -53,7 +52,6 @@ func init() {
 			}
 
 			if interval != "" {
-
 				var d, h, m int
 
 				bkpType = types.IntervalSchedule
@@ -68,12 +66,22 @@ func init() {
 				timeOrInt = interval
 			}
 
+			if delete != "" {
+				var d, h, m int
+
+				_, err := fmt.Sscanf(delete, "%d-%d-%d", &d, &h, &m)
+				if err != nil {
+					log.Fatal(err)
+				}
+			}
+
 			bkpCfg := types.BkpConf{
 				BkpSchedules: []types.Schedule{
 					{
 						Type:           bkpType,
 						StartTime:      startTime,
 						TimeOrInterval: timeOrInt,
+						DeleteInterval: delete,
 						SourcePath:     args[0],
 						DestPath:       args[1],
 					},
@@ -86,6 +94,7 @@ func init() {
 
 	addScheadule.Flags().StringVarP(&instant, "time", "t", "", "Set time when backup will run Format: yyyy-MM-ddTHH:mm")
 	addScheadule.Flags().StringVarP(&interval, "interval", "i", "", "Set the interval for continuously running backups Format: dd-HH-mm")
+	addScheadule.Flags().StringVarP(&delete, "delete", "d", "", "Set the interval for the backup exclusion afther the backup is done Format: dd-HH-mm")
 
 	rootCmd.AddCommand(addScheadule)
 }

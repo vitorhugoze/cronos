@@ -15,6 +15,7 @@ type Schedule struct {
 	Type           ScheduleType `mapstructure:"type"`
 	StartTime      string       `mapstructure:"starttime"`
 	TimeOrInterval string       `mapstructure:"timeorinterval"`
+	DeleteInterval string       `mapstructure:"deleteinterval"`
 	SourcePath     string       `mapstructure:"sourcepath"`
 	DestPath       string       `mapstructure:"destpath"`
 }
