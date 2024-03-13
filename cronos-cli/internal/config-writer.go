@@ -5,6 +5,7 @@ import (
 	"errors"
 	"log"
 	"os"
+	"path/filepath"
 
 	"github.com/spf13/viper"
 )
@@ -17,7 +18,7 @@ func ConfigWriter(cfg types.BkpConf) {
 
 	viper.AddConfigPath(configPath)
 
-	if _, err := os.Stat(configPath + "\\cronos-conf.yaml"); err != nil {
+	if _, err := os.Stat(filepath.Join(configPath, "cronos-conf.yaml")); err != nil {
 
 		if errors.Is(err, os.ErrNotExist) {
 			viper.Set("bkpschedules", cfg.BkpSchedules)
