@@ -1,4 +1,4 @@
-<h1 align="center">Cronos <img src="https://img.shields.io/badge/go-%2300ADD8.svg?&style=for-the-badge&logo=go&logoColor=white"  style="position: absolute; right: 0px; margin-top: 7px"></h1>
+<h1 align="center">Cronos <img src="https://img.shields.io/badge/go-%2300ADD8.svg?&style=for-the-badge&logo=go&logoColor=white"  align="right"></h1>
 
 ## Description
 
